@@ -34,10 +34,29 @@ console.log(x[0] === y[0]) // true
 ***********************************************************************/
 
 
+// function deepDup(arr, i = 0) {
+//     let duped = [];
+//     if (duped.length === arr.length) return duped;
+//     duped.push(arr[i]);
+//     return deepDup(arr, i + 1);
+// }
 function deepDup(arr) {
-  // Your code here
-}
+    let target = Array.isArray(arr) ? [] : {};
+    for (let key in arr) {
+      let v = arr[key];
+      if (v) {
+        if (typeof v === "object") {
+          target[key] = deepDup(v);
+        } else {
+          target[key] = v;
+        }
+      } else {
+        target[key] = v;
+      }
+    }
 
+    return target;
+  }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
